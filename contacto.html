@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Consultas | EducaInclusión</title>
+    <meta name="description" content="Ponte en contacto con el equipo de EducaInclusión para solicitar asesoría en inclusión o aportar nuevos recursos a nuestra biblioteca.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header inyectado dinámicamente -->
+    <div id="nav-placeholder"></div>
+
+    <main class="main-wrapper">
+        <div class="container contact-layout">
+            
+            <!-- Columna Izquierda: Información de contacto -->
+            <section class="contact-info">
+                <h2>¿Tienes dudas o quieres colaborar?</h2>
+                <p>Si eres docente o tutor universitario y necesitas orientación personalizada sobre adaptaciones curriculares, o deseas sugerir nuevos portales de inclusión para nuestro Directorio Global, no dudes en escribirnos.</p>
+                
+                <div style="margin-top: 2rem;">
+                    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                        <span style="font-size: 2rem; color: var(--secondary);">📍</span>
+                        <div>
+                            <strong>Ubicación institucional</strong>
+                            <p style="margin: 0; font-size: 0.95rem;">Comunidad Académica Universitaria Global</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <span style="font-size: 2rem; color: var(--secondary);">✉️</span>
+                        <div>
+                            <strong>Correo de Consultas</strong>
+                            <p style="margin: 0; font-size: 0.95rem;">soporte@educainclusion.edu</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Columna Derecha: Formulario de contacto -->
+            <section class="contact-card">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" required placeholder="Ej. Dra. María Silva">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" required placeholder="ejemplo@universidad.edu">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje o Consulta</label>
+                        <textarea id="mensaje" name="mensaje" rows="5" required placeholder="Escribe aquí tu consulta o los detalles de la adaptación..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Enviar Mensaje</button>
+                </form>
+
+                <!-- Tarjeta de Éxito Oculta -->
+                <div id="success-message" style="display: none; text-align: center; padding: 2rem 0;">
+                    <span style="font-size: 4rem; color: #48bb78;">✓</span>
+                    <h3 style="margin: 1rem 0 0.5rem; color: #48bb78;">¡Mensaje Recibido!</h3>
+                    <p style="color: var(--text-muted);">Tu consulta ha sido guardada localmente de manera exitosa. Nos pondremos en contacto contigo a la brevedad.</p>
+                    <button id="reset-form-btn" class="btn-secondary" style="margin-top: 1.5rem;">Enviar otra consulta</button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer inyectado dinámicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('success-message');
+            const resetBtn = document.getElementById('reset-form-btn');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = {
+                    nombre: document.getElementById('nombre').value,
+                    email: document.getElementById('email').value,
+                    mensaje: document.getElementById('mensaje').value,
+                    fecha: new Date().toISOString()
+                };
+
+                // Intentamos guardar en el servidor local si está corriendo, si no, guardamos en localStorage
+                fetch('/api/contacto', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(res => res.json())
+                .catch(() => {
+                    // Fallback local: guardar en LocalStorage
+                    const localMsgs = JSON.parse(localStorage.getItem('guia_contacto_mensajes') || '[]');
+                    localMsgs.push(formData);
+                    localStorage.setItem('guia_contacto_mensajes', JSON.stringify(localMsgs));
+                    return { success: true };
+                })
+                .then(() => {
+                    // Mostrar panel de éxito
+                    form.style.display = 'none';
+                    successMsg.style.display = 'block';
+                });
+            });
+
+            resetBtn.addEventListener('click', () => {
+                form.reset();
+                form.style.display = 'block';
+                successMsg.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

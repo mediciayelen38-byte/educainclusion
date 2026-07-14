@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas de Estudio y Orientación Académica | EducaInclusión</title>
+    <meta name="description" content="Técnicas de estudio activo, repetición espaciada y orientación pedagógica para estudiantes universitarios neurodiversos.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header inyectado dinámicamente -->
+    <div id="nav-placeholder"></div>
+
+    <main class="main-wrapper">
+        <div class="container split-layout">
+            
+            <!-- Sidebar Izquierdo con los artículos de la categoría -->
+            <aside class="sidebar-nav">
+                <h3>Técnicas de Estudio</h3>
+                <ul id="sidebar-articles-list">
+                    <!-- Inyectado por JS -->
+                </ul>
+            </aside>
+
+            <!-- Sección Derecha: Detalle del Artículo -->
+            <section class="article-container" id="article-view" aria-label="Contenido del artículo">
+                <article>
+                    <header class="article-header">
+                        <div class="directory-card-tags">
+                            <span class="badge" id="article-keyword">Técnicas de Estudio</span>
+                        </div>
+                        <h2 id="article-title" style="font-size: 2.25rem; margin-top: 0.5rem; color: var(--primary);">Cargando artículo...</h2>
+                        <div class="article-meta">
+                            <span>Publicado el: <strong id="article-date">-</strong></span>
+                            <span>Categoría: <strong>Técnicas de Estudio</strong></span>
+                        </div>
+                    </header>
+                    
+                    <div class="article-content" id="article-content">
+                        <!-- Inyectado por JS -->
+                    </div>
+
+                    <!-- Espacio para Anuncios / AdSense -->
+                    <div class="ad-placeholder"></div>
+                    
+                    <div class="bibliography-section" id="article-bibliography-wrapper">
+                        <h4>Bibliografía y Referencias Académicas</h4>
+                        <div id="article-bibliography">
+                            <!-- Inyectado por JS -->
+                        </div>
+                    </div>
+                </article>
+            </section>
+            
+        </div>
+    </main>
+
+    <!-- Footer inyectado dinámicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const CATEGORY = 'tecnicas-estudio';
+            const db = getDatabase();
+            
+            // Filtrar artículos publicados para esta categoría
+            const articles = db.articles.filter(a => a.category === CATEGORY && a.status === 'published');
+            const listElement = document.getElementById('sidebar-articles-list');
+
+            if (articles.length === 0) {
+                document.getElementById('article-title').textContent = "Próximamente";
+                document.getElementById('article-content').innerHTML = "<p>Pronto se publicarán nuevos artículos en esta sección.</p>";
+                document.getElementById('article-bibliography-wrapper').style.display = 'none';
+                return;
+            }
+
+            // Renderizar Sidebar
+            function renderSidebar(activeSlug) {
+                listElement.innerHTML = articles.map(art => `
+                    <li class="${art.slug === activeSlug ? 'active' : ''}">
+                        <a href="?slug=${art.slug}" data-slug="${art.slug}">${art.title}</a>
+                    </li>
+                `).join('');
+
+                // Interceptar clics para transiciones suaves sin recargar
+                listElement.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const slug = link.getAttribute('data-slug');
+                        history.pushState(null, '', `?slug=${slug}`);
+                        loadArticle(slug);
+                    });
+                });
+            }
+
+            // Cargar contenido del artículo
+            function loadArticle(slug) {
+                let article = articles.find(a => a.slug === slug);
+                if (!article) {
+                    article = articles[0]; // Por defecto el primero
+                }
+
+                // Transición visual suave
+                const articleView = document.getElementById('article-view');
+                articleView.style.opacity = 0;
+                articleView.style.transform = 'translateY(10px)';
+                articleView.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+
+                setTimeout(() => {
+                    document.getElementById('article-title').textContent = article.title;
+                    document.getElementById('article-keyword').textContent = article.keyword;
+                    document.getElementById('article-date').textContent = new Date(article.created_at).toLocaleDateString('es-ES', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+                    document.getElementById('article-content').innerHTML = article.content;
+                    
+                    if (article.bibliography && article.bibliography.trim() !== '') {
+                        document.getElementById('article-bibliography-wrapper').style.display = 'block';
+                        document.getElementById('article-bibliography').innerHTML = article.bibliography;
+                    } else {
+                        document.getElementById('article-bibliography-wrapper').style.display = 'none';
+                    }
+
+                    renderSidebar(article.slug);
+                    
+                    // Restaurar opacidad
+                    articleView.style.opacity = 1;
+                    articleView.style.transform = 'translateY(0)';
+                }, 200);
+            }
+
+            // Detectar slug inicial en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const initialSlug = urlParams.get('slug');
+            
+            loadArticle(initialSlug);
+
+            // Escuchar cambios de historial (botones atrás/adelante del navegador)
+            window.addEventListener('popstate', () => {
+                const params = new URLSearchParams(window.location.search);
+                loadArticle(params.get('slug'));
+            });
+        });
+    </script>
+</body>
+</html>

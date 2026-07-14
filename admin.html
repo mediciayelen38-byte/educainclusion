@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | EducaInclusión</title>
+    <meta name="description" content="Panel de administración y gestión de contenidos de EducaInclusión. Publica, edita o crea guías y enlaces académicos.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header inyectado dinámicamente -->
+    <div id="nav-placeholder"></div>
+
+    <main class="main-wrapper">
+        <div class="container">
+            
+            <header class="admin-header">
+                <div>
+                    <h2>Panel de Creador y Administración</h2>
+                    <p>Gestiona los artículos de tu biblioteca, aprueba borradores semanales y actualiza el Directorio Global.</p>
+                </div>
+                
+                <div style="display: flex; gap: 0.75rem;">
+                    <!-- Botón para Exportar base de datos local -->
+                    <button class="btn-secondary" id="btn-export-db" title="Exportar la base de datos a un archivo JSON en tu PC">📥 Exportar JSON</button>
+                    <!-- Importar base de datos -->
+                    <button class="btn-secondary" id="btn-import-trigger" title="Cargar un archivo data.json desde tu PC">📤 Importar JSON</button>
+                    <input type="file" id="db-file-input" style="display: none;" accept=".json">
+                </div>
+            </header>
+
+            <section class="admin-grid" aria-label="Secciones de administración">
+                
+                <!-- Columna Izquierda: Gestión de Artículos -->
+                <div class="admin-box">
+                    <h3>
+                        <span>Artículos de la Biblioteca</span>
+                        <button class="btn-primary" id="btn-new-article" style="padding: 0.4rem 1rem; font-size: 0.85rem;">+ Nuevo Artículo</button>
+                    </h3>
+                    
+                    <div class="admin-list" id="admin-articles-list">
+                        <!-- Rellenado por JS -->
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Gestión de Enlaces -->
+                <div class="admin-box">
+                    <h3>
+                        <span>Enlaces del Directorio Global</span>
+                        <button class="btn-primary" id="btn-new-link" style="padding: 0.4rem 1rem; font-size: 0.85rem;">+ Nuevo Enlace</button>
+                    </h3>
+                    
+                    <div class="admin-list" id="admin-links-list">
+                        <!-- Rellenado por JS -->
+                    </div>
+                </div>
+
+            </section>
+            
+            <!-- Moderación de Comentarios del Foro (Fila inferior completa) -->
+            <section class="admin-box" style="margin-top: 2rem;">
+                <h3>Moderación de Experiencias en el Foro</h3>
+                <div class="admin-list" id="admin-comments-list" style="margin-top: 1rem;">
+                    <!-- Rellenado por JS -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal Formulario de Artículos -->
+    <div class="modal" id="modal-article">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-article-title">Crear Nuevo Artículo</h3>
+                <button class="btn-close-drawer" id="close-modal-article">&times;</button>
+            </div>
+            <form id="form-article">
+                <input type="hidden" id="art-id">
+                
+                <div class="form-group">
+                    <label for="art-title">Título del Artículo</label>
+                    <input type="text" id="art-title" required placeholder="Ej. Dificultades de escritura y adaptaciones">
+                </div>
+
+                <div class="form-group">
+                    <label for="art-slug">Slug de URL (minúsculas y guiones)</label>
+                    <input type="text" id="art-slug" required placeholder="ej-dificultades-escritura">
+                </div>
+
+                <div class="form-group">
+                    <label for="art-category">Categoría</label>
+                    <select id="art-category" required>
+                        <option value="inclusion-educativa">Inclusión Educativa</option>
+                        <option value="dificultades-aprendizaje">Dificultades de Aprendizaje</option>
+                        <option value="tecnicas-estudio">Técnicas de Estudio</option>
+                        <option value="investigacion-cualitativa">Investigación Cualitativa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="art-keyword">Palabra Clave (SEO)</label>
+                    <input type="text" id="art-keyword" required placeholder="Ej. dificultades de aprendizaje">
+                </div>
+
+                <div class="form-group">
+                    <label for="art-summary">Resumen Breve (Aparecerá en el Inicio)</label>
+                    <textarea id="art-summary" rows="2" required placeholder="Breve resumen persuasivo de una o dos oraciones conteniendo la palabra clave."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="art-content">Contenido HTML del Artículo</label>
+                    <textarea id="art-content" rows="8" required placeholder="<h3>Subtítulo</h3><p>Párrafo explicativo...</p><ul><li>Punto 1</li></ul>"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="art-bibliography">Bibliografía HTML (Opcional)</label>
+                    <textarea id="art-bibliography" rows="4" placeholder="<ul><li>Autor (Año). Libro...</li></ul>"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="art-status">Estado</label>
+                    <select id="art-status" required>
+                        <option value="published">Publicado</option>
+                        <option value="draft">Borrador</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="btn-cancel-article">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Artículo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Formulario de Enlaces -->
+    <div class="modal" id="modal-link">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-link-title">Crear Nuevo Enlace</h3>
+                <button class="btn-close-drawer" id="close-modal-link">&times;</button>
+            </div>
+            <form id="form-link">
+                <input type="hidden" id="link-id">
+                
+                <div class="form-group">
+                    <label for="link-title">Nombre de la Institución o Portal</label>
+                    <input type="text" id="link-title" required placeholder="Ej. Universidad de Salamanca - Área de Apoyo">
+                </div>
+
+                <div class="form-group">
+                    <label for="link-url">Enlace URL (Comenzar con http:// o https://)</label>
+                    <input type="url" id="link-url" required placeholder="https://ejemplo.edu/inclusion">
+                </div>
+
+                <div class="form-group">
+                    <label for="link-description">Descripción Breve</label>
+                    <textarea id="link-description" rows="3" required placeholder="Describe qué información educativa de valor provee esta página."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="link-region">Región Geográfica</label>
+                    <select id="link-region" required>
+                        <option value="Latinoamérica">Latinoamérica</option>
+                        <option value="Europa">Europa</option>
+                        <option value="Norteamérica">Norteamérica</option>
+                        <option value="Global">Global</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="link-type">Tipo de Contenido</label>
+                    <select id="link-type" required>
+                        <option value="Teórico">Teórico</option>
+                        <option value="Práctico">Práctico</option>
+                        <option value="Investigación">Investigación</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="btn-cancel-link">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar Enlace</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer inyectado dinámicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let db = getDatabase();
+            
+            const articlesList = document.getElementById('admin-articles-list');
+            const linksList = document.getElementById('admin-links-list');
+            const commentsList = document.getElementById('admin-comments-list');
+            
+            // Modals
+            const modalArticle = document.getElementById('modal-article');
+            const modalLink = document.getElementById('modal-link');
+            
+            // Formularios
+            const formArticle = document.getElementById('form-article');
+            const formLink = document.getElementById('form-link');
+
+            // 1. Renderizar listas
+            function renderAdminDashboard() {
+                db = getDatabase();
+                
+                // Renderizar Artículos
+                articlesList.innerHTML = db.articles.map(art => `
+                    <div class="admin-card">
+                        <div class="admin-card-info">
+                            <h4>${art.title}</h4>
+                            <p>
+                                <span class="badge ${art.status === 'published' ? 'badge-published' : 'badge-draft'}">${art.status === 'published' ? 'Publicado' : 'Borrador'}</span>
+                                | Palabra Clave: ${art.keyword}
+                            </p>
+                        </div>
+                        <div class="admin-card-actions">
+                            ${art.status === 'draft' ? `
+                                <button class="btn-icon btn-approve" data-id="${art.id}" title="Aprobar y Publicar">✓</button>
+                            ` : ''}
+                            <button class="btn-icon btn-edit" data-type="article" data-id="${art.id}" title="Editar">✏️</button>
+                            <button class="btn-icon btn-delete" data-type="article" data-id="${art.id}" title="Eliminar">🗑️</button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Renderizar Enlaces
+                linksList.innerHTML = db.links.map(link => `
+                    <div class="admin-card">
+                        <div class="admin-card-info">
+                            <h4>${link.title}</h4>
+                            <p>${link.region} | ${link.type} | <a href="${link.url}" target="_blank">${link.url}</a></p>
+                        </div>
+                        <div class="admin-card-actions">
+                            <button class="btn-icon btn-edit" data-type="link" data-id="${link.id}" title="Editar">✏️</button>
+                            <button class="btn-icon btn-delete" data-type="link" data-id="${link.id}" title="Eliminar">🗑️</button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Renderizar Comentarios del Foro
+                renderCommentsList();
+
+                // Asignar eventos de acciones de manera delegada
+                setupActionButtons();
+            }
+
+            function renderCommentsList() {
+                const comments = getForoComments();
+                
+                if (comments.length === 0) {
+                    commentsList.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">No hay opiniones publicadas en el foro.</p>';
+                    return;
+                }
+
+                commentsList.innerHTML = comments.map(c => `
+                    <div class="admin-card">
+                        <div class="admin-card-info">
+                            <h4>${c.nombre} (${c.rol})</h4>
+                            <p>Tema: <strong>${c.tema}</strong> | Mensaje: "${c.mensaje.substring(0, 100)}${c.mensaje.length > 100 ? '...' : ''}"</p>
+                        </div>
+                        <div class="admin-card-actions">
+                            <button class="btn-icon btn-delete-comment btn-delete" data-type="comment" data-id="${c.id}" title="Eliminar Opinión">🗑️</button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Asignar clics de borrar comentarios
+                document.querySelectorAll('.btn-delete-comment').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        if (confirm('¿Estás seguro de que deseas eliminar esta opinión del foro?')) {
+                            let list = getForoComments();
+                            list = list.filter(c => c.id !== id);
+                            saveForoComments(list);
+                            renderAdminDashboard();
+                        }
+                    });
+                });
+            }
+
+            // Configurar botones de Editar/Eliminar/Aprobar
+            function setupActionButtons() {
+                // Aprobar borradores
+                document.querySelectorAll('.btn-approve').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const id = btn.getAttribute('data-id');
+                        const art = db.articles.find(a => a.id === id);
+                        if (art) {
+                            art.status = 'published';
+                            saveDatabase(db);
+                            renderAdminDashboard();
+                        }
+                    });
+                });
+
+                // Editar o Eliminar
+                document.querySelectorAll('.btn-edit, .btn-delete').forEach(btn => {
+                    const id = btn.getAttribute('data-id');
+                    const type = btn.getAttribute('data-type');
+                    const isEdit = btn.classList.contains('btn-edit');
+
+                    if (type === 'comment') return; // Se maneja en renderCommentsList
+
+                    btn.addEventListener('click', () => {
+                        if (type === 'article') {
+                            if (isEdit) {
+                                openEditArticleModal(id);
+                            } else {
+                                if (confirm('¿Estás seguro de que deseas eliminar este artículo?')) {
+                                    db.articles = db.articles.filter(a => a.id !== id);
+                                    saveDatabase(db);
+                                    renderAdminDashboard();
+                                }
+                            }
+                        } else if (type === 'link') {
+                            if (isEdit) {
+                                openEditLinkModal(id);
+                            } else {
+                                if (confirm('¿Estás seguro de que deseas eliminar este enlace?')) {
+                                    db.links = db.links.filter(l => l.id !== id);
+                                    saveDatabase(db);
+                                    renderAdminDashboard();
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+
+            // 2. Control de Formularios de Artículos
+            document.getElementById('btn-new-article').addEventListener('click', () => {
+                formArticle.reset();
+                document.getElementById('art-id').value = '';
+                document.getElementById('modal-article-title').textContent = "Crear Nuevo Artículo";
+                // Llenar slug automáticamente
+                document.getElementById('art-title').oninput = (e) => {
+                    document.getElementById('art-slug').value = e.target.value
+                        .toLowerCase()
+                        .trim()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/[\s_]+/g, '-');
+                };
+                modalArticle.classList.add('open');
+            });
+
+            function openEditArticleModal(id) {
+                const art = db.articles.find(a => a.id === id);
+                if (!art) return;
+
+                document.getElementById('art-title').oninput = null; // Quitar autollenado
+                document.getElementById('art-id').value = art.id;
+                document.getElementById('art-title').value = art.title;
+                document.getElementById('art-slug').value = art.slug;
+                document.getElementById('art-category').value = art.category;
+                document.getElementById('art-keyword').value = art.keyword;
+                document.getElementById('art-summary').value = art.summary;
+                document.getElementById('art-content').value = art.content;
+                document.getElementById('art-bibliography').value = art.bibliography || '';
+                document.getElementById('art-status').value = art.status;
+
+                document.getElementById('modal-article-title').textContent = "Editar Artículo";
+                modalArticle.classList.add('open');
+            }
+
+            formArticle.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('art-id').value;
+                const newArt = {
+                    id: id || 'art-' + Date.now(),
+                    title: document.getElementById('art-title').value,
+                    slug: document.getElementById('art-slug').value,
+                    category: document.getElementById('art-category').value,
+                    keyword: document.getElementById('art-keyword').value,
+                    summary: document.getElementById('art-summary').value,
+                    content: document.getElementById('art-content').value,
+                    bibliography: document.getElementById('art-bibliography').value,
+                    status: document.getElementById('art-status').value,
+                    created_at: id ? db.articles.find(a => a.id === id).created_at : new Date().toISOString()
+                };
+
+                if (id) {
+                    const index = db.articles.findIndex(a => a.id === id);
+                    db.articles[index] = newArt;
+                } else {
+                    db.articles.push(newArt);
+                }
+
+                saveDatabase(db);
+                modalArticle.classList.remove('open');
+                renderAdminDashboard();
+            });
+
+            // 3. Control de Formularios de Enlaces
+            document.getElementById('btn-new-link').addEventListener('click', () => {
+                formLink.reset();
+                document.getElementById('link-id').value = '';
+                document.getElementById('modal-link-title').textContent = "Crear Nuevo Enlace";
+                modalLink.classList.add('open');
+            });
+
+            function openEditLinkModal(id) {
+                const link = db.links.find(l => l.id === id);
+                if (!link) return;
+
+                document.getElementById('link-id').value = link.id;
+                document.getElementById('link-title').value = link.title;
+                document.getElementById('link-url').value = link.url;
+                document.getElementById('link-description').value = link.description;
+                document.getElementById('link-region').value = link.region;
+                document.getElementById('link-type').value = link.type;
+
+                document.getElementById('modal-link-title').textContent = "Editar Enlace";
+                modalLink.classList.add('open');
+            }
+
+            formLink.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('link-id').value;
+                const newLink = {
+                    id: id || 'link-' + Date.now(),
+                    title: document.getElementById('link-title').value,
+                    url: document.getElementById('link-url').value,
+                    description: document.getElementById('link-description').value,
+                    region: document.getElementById('link-region').value,
+                    type: document.getElementById('link-type').value,
+                    created_at: id ? db.links.find(l => l.id === id).created_at : new Date().toISOString()
+                };
+
+                if (id) {
+                    const index = db.links.findIndex(l => l.id === id);
+                    db.links[index] = newLink;
+                } else {
+                    db.links.push(newLink);
+                }
+
+                saveDatabase(db);
+                modalLink.classList.remove('open');
+                renderAdminDashboard();
+            });
+
+            // Cierre de Modales
+            document.getElementById('close-modal-article').addEventListener('click', () => modalArticle.classList.remove('open'));
+            document.getElementById('btn-cancel-article').addEventListener('click', () => modalArticle.classList.remove('open'));
+            
+            document.getElementById('close-modal-link').addEventListener('click', () => modalLink.classList.remove('open'));
+            document.getElementById('btn-cancel-link').addEventListener('click', () => modalLink.classList.remove('open'));
+
+            // 4. Sincronización y Respaldo (Importar / Exportar JSON)
+            document.getElementById('btn-export-db').addEventListener('click', () => {
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(db, null, 2));
+                const downloadAnchor = document.createElement('a');
+                downloadAnchor.setAttribute("href",     dataStr);
+                downloadAnchor.setAttribute("download", "data.json");
+                document.body.appendChild(downloadAnchor);
+                downloadAnchor.click();
+                downloadAnchor.remove();
+            });
+
+            const importTrigger = document.getElementById('btn-import-trigger');
+            const fileInput = document.getElementById('db-file-input');
+
+            importTrigger.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    try {
+                        const importedData = JSON.parse(evt.target.result);
+                        if (importedData.articles && importedData.links) {
+                            saveDatabase(importedData);
+                            alert("¡Base de datos importada correctamente! La página se recargará.");
+                            location.reload();
+                        } else {
+                            alert("Error: El archivo JSON no tiene la estructura válida (articles y links).");
+                        }
+                    } catch (err) {
+                        alert("Error al leer el archivo JSON: " + err.message);
+                    }
+                };
+                reader.readAsText(file);
+            });
+
+            // Renderizado Inicial
+            renderAdminDashboard();
+        });
+    </script>
+</body>
+</html>

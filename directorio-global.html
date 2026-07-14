@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio Global de Portales de Inclusión | EducaInclusión</title>
+    <meta name="description" content="Directorio interactivo de enlaces a portales, universidades y centros de investigación de inclusión educativa a nivel mundial.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header inyectado dinámicamente -->
+    <div id="nav-placeholder"></div>
+
+    <main class="main-wrapper">
+        <div class="container">
+            
+            <header class="directory-header">
+                <h2>Directorio Global de Inclusión</h2>
+                <p>Enlaces seleccionados de universidades, redes internacionales y organismos de referencia clasificados geográficamente y por tipo de recurso.</p>
+                <div style="width: 60px; height: 4px; background: var(--secondary); margin: 1rem auto 0; border-radius: 2px;"></div>
+            </header>
+
+            <!-- Panel de Filtrado -->
+            <section class="directory-filters" aria-label="Filtros del directorio">
+                <input type="text" id="dir-search" class="directory-search" placeholder="Buscar por nombre de universidad, institución o palabra clave...">
+                
+                <div class="filter-group">
+                    <span class="filter-label">Por Región:</span>
+                    <div class="filter-pills" id="region-pills">
+                        <button class="filter-pill active" data-value="all">Todas</button>
+                        <button class="filter-pill" data-value="Latinoamérica">Latinoamérica</button>
+                        <button class="filter-pill" data-value="Europa">Europa</button>
+                        <button class="filter-pill" data-value="Norteamérica">Norteamérica</button>
+                        <button class="filter-pill" data-value="Global">Global</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <span class="filter-label">Por Tipo:</span>
+                    <div class="filter-pills" id="type-pills">
+                        <button class="filter-pill active" data-value="all">Todos</button>
+                        <button class="filter-pill" data-value="Teórico">Teórico</button>
+                        <button class="filter-pill" data-value="Práctico">Práctico / Guías</button>
+                        <button class="filter-pill" data-value="Investigación">Investigación</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Grid de Recursos -->
+            <section class="directory-grid" id="directory-links-grid" aria-label="Lista de enlaces de interés">
+                <!-- Rellenado dinámicamente por JS -->
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer inyectado dinámicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const db = getDatabase();
+            const grid = document.getElementById('directory-links-grid');
+            const searchInput = document.getElementById('dir-search');
+            
+            let activeRegion = 'all';
+            let activeType = 'all';
+
+            // Función para renderizar los enlaces filtrados
+            function renderLinks() {
+                const query = searchInput.value.toLowerCase().trim();
+                
+                const filtered = db.links.filter(link => {
+                    const matchesRegion = (activeRegion === 'all' || link.region === activeRegion);
+                    const matchesType = (activeType === 'all' || link.type === activeType);
+                    const matchesSearch = (
+                        link.title.toLowerCase().includes(query) ||
+                        link.description.toLowerCase().includes(query) ||
+                        link.url.toLowerCase().includes(query)
+                    );
+                    return matchesRegion && matchesType && matchesSearch;
+                });
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 4rem; color: var(--text-muted);">
+                            <p style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">No se encontraron portales o recursos</p>
+                            <p>Intenta cambiar los filtros seleccionados o escribir otra palabra clave.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(link => `
+                    <article class="directory-card">
+                        <div class="directory-card-tags">
+                            <span class="badge tag-region">${link.region}</span>
+                            <span class="badge tag-type">${link.type}</span>
+                        </div>
+                        <h4>${link.title}</h4>
+                        <p>${link.description}</p>
+                        <a href="${link.url}" target="_blank" class="btn-visit">Visitar Portal Oficial ↗</a>
+                    </article>
+                `).join('');
+            }
+
+            // Manejo de Filtros de Región
+            const regionPills = document.getElementById('region-pills').querySelectorAll('.filter-pill');
+            regionPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    regionPills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    activeRegion = pill.getAttribute('data-value');
+                    renderLinks();
+                });
+            });
+
+            // Manejo de Filtros de Tipo
+            const typePills = document.getElementById('type-pills').querySelectorAll('.filter-pill');
+            typePills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    typePills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    activeType = pill.getAttribute('data-value');
+                    renderLinks();
+                });
+            });
+
+            // Búsqueda en tiempo real
+            searchInput.addEventListener('input', renderLinks);
+
+            // Renderizar inicial
+            renderLinks();
+        });
+    </script>
+</body>
+</html>

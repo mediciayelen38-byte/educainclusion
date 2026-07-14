@@ -1,0 +1,13 @@
+# robots.txt para EducaInclusión
+# Indica a los motores de búsqueda cómo deben indexar el sitio.
+
+User-agent: *
+Allow: /
+
+# Evitar indexación del panel de administración
+Disallow: /admin.html
+Disallow: /data.js
+Disallow: /data.json
+
+# Enlace al Sitemap
+Sitemap: https://educainclusion.edu/sitemap.xml

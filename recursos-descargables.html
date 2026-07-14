@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos Descargables y Plantillas Pedagógicas | EducaInclusión</title>
+    <meta name="description" content="Biblioteca central de plantillas, listas de verificación y guías prácticas en formato PDF para una enseñanza universitaria accesible e inclusiva.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header inyectado dinámicamente -->
+    <div id="nav-placeholder"></div>
+
+    <main class="main-wrapper">
+        <div class="container">
+            
+            <header class="directory-header">
+                <h2>Biblioteca de Recursos Descargables</h2>
+                <p>Materiales y plantillas listos para descargar y aplicar en tu planificación docente o tus investigaciones.</p>
+                <div style="width: 60px; height: 4px; background: var(--secondary); margin: 1rem auto 0; border-radius: 2px;"></div>
+            </header>
+
+            <section class="downloads-list" aria-label="Tarjetas de descarga">
+                
+                <!-- Recurso 1: DUA -->
+                <article class="download-card">
+                    <span class="download-icon">📋</span>
+                    <h3>Guía de Diseño Universal para el Aprendizaje (DUA)</h3>
+                    <p>Folleto práctico en PDF que resume las directrices de CAST 2.2, con una tabla de estrategias metodológicas para aplicar en clase de inmediato.</p>
+                    <button class="btn-primary btn-download" data-filename="Guia_DUA_EducaInclusion.txt" data-content="--- GUIA DE DISENO UNIVERSAL PARA EL APRENDIZAJE (DUA) ---\n\nEste documento resume las pautas fundamentales para planificar clases universitarias accesibles.\n\nPrincipios clave:\n1. Múltiples medios de representación: Ofrece textos estructurados, audios y explicaciones verbales.\n2. Múltiples medios de acción y expresión: Flexibiliza la evaluación (ensayos, proyectos, oral).\n3. Múltiples medios de compromiso: Deja que el estudiante participe en las temáticas de los proyectos.\n\nCreado por EducaInclusión (2026).">Descargar Documento</button>
+                </article>
+
+                <!-- Recurso 2: A11y Digital -->
+                <article class="download-card">
+                    <span class="download-icon">💻</span>
+                    <h3>Lista de Verificación de Accesibilidad Digital</h3>
+                    <p>Ficha de cotejo para evaluar el grado de accesibilidad de tus documentos de cátedra (Word, PDF) y de tus aulas virtuales en Moodle o Canvas.</p>
+                    <button class="btn-primary btn-download" data-filename="Checklist_Accesibilidad_Digital.txt" data-content="--- CHECKLIST DE ACCESIBILIDAD PARA EL AULA VIRTUAL ---\n\nUtiliza esta lista para evaluar tus materiales didácticos:\n\n[ ] Documentos: ¿Los archivos Word y PDF tienen texto seleccionable (no escaneado)?\n[ ] Encabezados: ¿Se usan estilos de título (H1, H2, H3) para estructurar el contenido?\n[ ] Imágenes: ¿Tienen todas las imágenes un texto alternativo descriptivo?\n[ ] Video: ¿Los videos cuentan con subtítulos o una transcripción de texto adjunta?\n[ ] Enlaces: ¿Los hipervínculos tienen texto descriptivo (no usar 'haz clic aquí')?\n\nCreado por EducaInclusión (2026).">Descargar Documento</button>
+                </article>
+
+                <!-- Recurso 3: Acta Ajustes -->
+                <article class="download-card">
+                    <span class="download-icon">📝</span>
+                    <h3>Plantilla de Acuerdo de Ajustes Razonables</h3>
+                    <p>Modelo de acta en blanco para formalizar y firmar, de mutuo acuerdo con el estudiante, los ajustes metodológicos y de evaluación específicos que se aplicarán.</p>
+                    <button class="btn-primary btn-download" data-filename="Plantilla_Acuerdo_Ajustes.txt" data-content="--- ACTA DE ACUERDO DE AJUSTES RAZONABLES ---\n\nFecha: __/__/____\nAsignatura: _________________________\nDocente: _____________________________\nEstudiante: __________________________\n\nPor medio del presente documento, se formalizan las siguientes adaptaciones no significativas de acceso:\n\n1. Tiempo adicional en evaluaciones: [ ] Sí (___% extra)  [ ] No\n2. Cambio de formato de examen: [ ] Sí (De escrito a ________)  [ ] No\n3. Uso de tecnologías de asistencia: [ ] Sí (Detalle: ____________) [ ] No\n\nFirma Docente: ______________    Firma Estudiante: ______________">Descargar Documento</button>
+                </article>
+
+                <!-- Recurso 4: Fases Braun & Clarke -->
+                <article class="download-card">
+                    <span class="download-icon">📊</span>
+                    <h3>Plantilla de Codificación para Análisis Temático</h3>
+                    <p>Hoja de ruta estructurada en formato tabla para guiar la fase de codificación de entrevistas cualitativas siguiendo el método clásico de Braun & Clarke.</p>
+                    <button class="btn-primary btn-download" data-filename="Plantilla_Analisis_Tematico.txt" data-content="--- GUIA DE TRABAJO: ANALISIS TEMATICO (Braun & Clarke) ---\n\nMatriz sugerida para el volcado y codificación de entrevistas cualitativas:\n\n[Fase 1] Familiarización: Lee la transcripción al menos dos veces anotando primeras impresiones.\n[Fase 2] Codificación:\n- Columna A: Cita textual (Verbatim)\n- Columna B: Código inicial (Etiqueta conceptual)\n- Columna C: Categoría preliminar\n\n[Fase 3] Agrupación en temas:\n- Reúne los códigos similares en 'Temas Candidatos' que respondan a tu pregunta de investigación.">Descargar Documento</button>
+                </article>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer inyectado dinámicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Manejador de descargas dinámicas mediante Blobs
+            const downloadButtons = document.querySelectorAll('.btn-download');
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filename = button.getAttribute('data-filename');
+                    const rawContent = button.getAttribute('data-content');
+                    // Decodificar los saltos de línea \n
+                    const content = rawContent.replace(/\\n/g, '\n');
+
+                    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = filename;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

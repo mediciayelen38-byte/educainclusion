@@ -1,0 +1,177 @@
+const INITIAL_DATA = {
+  "articles": [
+    {
+      "id": "dua-principios",
+      "title": "Diseño Universal para el Aprendizaje (DUA): Pautas para su Implementación Universitaria",
+      "slug": "diseno-universal-aprendizaje",
+      "category": "inclusion-educativa",
+      "keyword": "inclusión educativa",
+      "summary": "El Diseño Universal para el Aprendizaje es un marco pedagógico esencial para promover la inclusión educativa en el ámbito universitario, eliminando barreras desde la planificación curricular.",
+      "content": "<h3>¿Qué es el DUA y por qué es clave en el aula universitaria?</h3><p>El Diseño Universal para el Aprendizaje (DUA o UDL por sus siglas en inglés) es un enfoque pedagógico que reconoce la diversidad humana y busca diseñar experiencias de aprendizaje flexibles y accesibles para todos los estudiantes, sin importar sus capacidades físicas, cognitivas o sensoriales. Su objetivo primordial es la <strong>inclusión educativa</strong>, facilitando que todos los estudiantes se conviertan en 'aprendices expertos'.</p><h3>Los Tres Principios del DUA</h3><p>El DUA se estructura en torno a tres redes cerebrales y propone tres principios fundamentales:</p><ol><li><strong>Proporcionar múltiples medios de Representación (el 'qué' del aprendizaje):</strong> Consiste en ofrecer la información en diferentes formatos (visual, auditivo, táctil, textual). En la universidad, esto implica no limitarse a lecturas en papel; se deben entregar PDFs accesibles con descripciones de imágenes (texto alternativo), videos con subtítulos y explicaciones verbales claras de gráficos expuestos en clase.</li><li><strong>Proporcionar múltiples medios de Acción y Expresión (el 'cómo' del aprendizaje):</strong> Permite a los estudiantes demostrar lo que saben de diferentes maneras. En lugar de evaluar únicamente mediante exámenes escritos tradicionales de opción múltiple, los docentes pueden ofrecer alternativas como presentaciones orales, videos explicativos, portafolios, ensayos o proyectos de aplicación práctica. Esto beneficia directamente a estudiantes con dislexia, TDAH o discapacidades motoras.</li><li><strong>Proporcionar múltiples medios de Compromiso (el 'porqué' del aprendizaje):</strong> Se enfoca en captar el interés de los estudiantes, mantener el esfuerzo y promover la autorregulación. Esto se logra ofreciendo opciones sobre las temáticas de los proyectos, fomentando el trabajo colaborativo estructurado, y brindando retroalimentación formativa y frecuente.</li></ol><h3>Aplicación Práctica del DUA para Docentes</h3><p>Para aplicar el DUA de manera efectiva en tu cátedra, puedes seguir esta secuencia básica:</p><ul><li><strong>Planificación accesible:</strong> Diseña el programa (syllabus) previendo la diversidad. Indica claramente los canales de comunicación y las adaptaciones disponibles.</li><li><strong>Materiales digitales accesibles:</strong> Usa formatos legibles por lectores de pantalla (archivos estructurados en Microsoft Word o PDF con texto real, no imágenes escaneadas).</li><li><strong>Flexibilidad en la evaluación:</strong> Ofrece tiempos adicionales de forma proactiva y provee rúbricas detalladas para guiar el desempeño de manera transparente.</li></ul>",
+      "bibliography": "<ul><li>CAST (2018). Universal Design for Learning Guidelines version 2.2. Recuperado de <a href='https://udlguidelines.cast.org' target='_blank'>https://udlguidelines.cast.org</a></li><li>Alba Pastor, C. (2018). <i>Diseño Universal para el Aprendizaje: un modelo teórico-práctico para una educación inclusiva de calidad</i>. Participación Educativa, 5(8), 55-66.</li><li>Rose, D. H., & Meyer, A. (2002). <i>Teaching every student in the digital age: Universal design for learning</i>. Alexandria, VA: Association for Supervision and Curriculum Development.</li></ul>",
+      "status": "published",
+      "created_at": "2026-07-13T19:00:00.000Z"
+    },
+    {
+      "id": "adaptaciones-curriculares",
+      "title": "Adaptaciones Curriculares y Ajustes Razonables en Educación Superior",
+      "slug": "adaptaciones-curriculares-universidad",
+      "category": "inclusion-educativa",
+      "keyword": "inclusión educativa",
+      "summary": "Las adaptaciones curriculares y ajustes razonables garantizan el derecho a la educación superior sin alterar los estándares académicos de exigencia.",
+      "content": "<h3>Ajustes Razonables vs. Adaptaciones Curriculares</h3><p>En el contexto de la educación superior, es habitual hablar de <strong>ajustes razonables</strong> (término legal y de derechos humanos) y de <strong>adaptaciones curriculares</strong> (término pedagógico). A diferencia de la educación primaria o secundaria, en la universidad no se realizan adaptaciones significativas que alteren los contenidos mínimos o competencias esenciales de la titulación, ya que el título otorgado certifica las mismas competencias profesionales para todos. En cambio, se aplican adaptaciones no significativas o de acceso al currículo.</p><h3>Tipos de Ajustes y Adaptaciones en la Universidad</h3><p>Los ajustes se clasifican principalmente en tres categorías:</p><ul><li><strong>Adaptaciones de acceso físico y ambiental:</strong> Eliminación de barreras arquitectónicas en aulas, laboratorios y bibliotecas. Disposición de mobiliario accesible (por ejemplo, mesas adaptadas para usuarios de sillas de ruedas) y condiciones óptimas de iluminación y acústica para estudiantes con discapacidad sensorial.</li><li><strong>Adaptaciones de acceso a la información y comunicación:</strong> Uso de intérpretes de lengua de señas, digitalización de bibliografía, provisión de transcripciones de audio, y uso de sistemas de amplificación de sonido (aros magnéticos).</li><li><strong>Adaptaciones metodológicas y de evaluación:</strong> Modificaciones en la forma de impartir las clases y evaluar. Ejemplos comunes: otorgar entre un 25% y 50% de tiempo adicional en exámenes, cambiar el formato de las pruebas (por ejemplo, de examen escrito a examen oral o viceversa), permitir el uso de computadoras con corrector ortográfico o lectores de pantalla durante los exámenes, y flexibilizar los plazos de entrega de trabajos.</li></ul><h3>El Protocolo de Solicitud de Ajustes</h3><p>Para que los ajustes sean efectivos y justos, se recomienda seguir un protocolo formalizado:</p><ol><li><strong>Identificación y Solicitud:</strong> El estudiante presenta el certificado de discapacidad ante el servicio de orientación o discapacidad de la universidad.</li><li><strong>Informe de Recomendaciones:</strong> El equipo de profesionales del área emite un informe confidencial dirigido a los docentes con las adaptaciones recomendadas.</li><li><strong>Acuerdo Pedagógico:</strong> Docente y estudiante se reúnen para operativizar los ajustes en el aula, manteniendo el nivel de exigencia académica pero asegurando la equidad.</li></ol>",
+      "bibliography": "<ul><li>Red SAPDU (2021). <i>Guía de adaptaciones en la universidad: Ajustes razonables para estudiantes con discapacidad</i>. Crue Universidades Españolas.</li><li>Organización de las Naciones Unidas (2006). <i>Convención sobre los Derechos de las Personas con Discapacidad</i> (Artículo 24: Educación).</li><li>Moriña, A. (2017). <i>Inclusive education in higher education: challenges and opportunities</i>. European Journal of Special Needs Education, 32(1), 3-17.</li></ul>",
+      "status": "published",
+      "created_at": "2026-07-13T19:05:00.000Z"
+    },
+    {
+      "id": "tdah-estrategias",
+      "title": "Estrategias de Acompañamiento en el Aula para Estudiantes con TDAH",
+      "slug": "estrategias-tdah-universidad",
+      "category": "dificultades-aprendizaje",
+      "keyword": "dificultades de aprendizaje",
+      "summary": "El TDAH es una de las dificultades de aprendizaje más frecuentes en la universidad. Conoce pautas para guiar y estructurar el rendimiento de estos alumnos.",
+      "content": "<h3>El Impacto del TDAH en la Educación Superior</h3><p>El Trastorno por Déficit de Atención con Hiperactividad (TDAH) afecta significativamente las funciones ejecutivas del cerebro. En la universidad, donde disminuye la supervisión externa y aumenta la demanda de autogestión, los estudiantes con TDAH suelen enfrentar serias barreras relacionadas con la gestión del tiempo, la organización, la concentración y la postergación crónica (procrastinación). Estas dificultades no están ligadas a su capacidad intelectual, sino a la regulación de su atención y esfuerzo.</p><h3>Estrategias Metodológicas para el Docente</h3><p>Los docentes universitarios pueden implementar pautas sencillas y efectivas para mitigar las dificultades asociadas al TDAH:</p><ul><li><strong>Estructura clara y predecible:</strong> Mantén el aula virtual actualizada con un cronograma detallado de lecturas y entregas. Explica al inicio de cada clase los objetivos que se abordarán.</li><li><strong>Segmentación de consignas (Chunkiing):</strong> Divide las tareas complejas o proyectos de larga duración en pequeñas entregas parciales y formativas. Esto evita la parálisis por abrumamiento y promueve un avance constante.</li><li><strong>Fomento de pausas activas:</strong> En clases teóricas de más de 90 minutos, introduce breves descansos o actividades de participación rápida (como preguntas interactivas vía móvil) para refrescar el foco atencional.</li><li><strong>Uso de apoyos visuales:</strong> Refuerza las instrucciones verbales clave dejándolas por escrito en la pizarra o en la plataforma virtual de aprendizaje.</li></ul><h3>Ajustes en los Exámenes</h3><p>Para asegurar una evaluación justa, se sugieren los siguientes ajustes:</p><ol><li>Permitir realizar los exámenes en un aula separada con baja estimulación sensorial (libre de ruidos o distractores visuales constantes).</li><li>Brindar tiempo adicional (habitualmente 25% extra) para que el estudiante pueda releer las consignas y estructurar sus respuestas sin la presión del reloj.</li><li>Permitir que el estudiante utilice tapones para los oídos o auriculares con cancelación de ruido durante exámenes individuales de lectura o escritura.</li></ol>",
+      "bibliography": "<ul><li>Barkley, R. A. (2015). <i>Attention-deficit hyperactivity disorder: A handbook for diagnosis and treatment</i> (4th ed.). New York: Guilford Press.</li><li>DuPaul, G. J., & Weyandt, L. L. (2009). <i>ADHD in college students: Prevalence, academic functioning, and empirical findings</i>. Journal of Attention Disorders, 13(2), 115-122.</li><li>Jara-Ríos, C. & Orellana, N. (2020). <i>Estudiantes con TDAH en educación superior: Una mirada desde las adaptaciones y el rendimiento académico</i>. Revista de Estudios Inclusivos, 3(2), 89-105.</li></ul>",
+      "status": "published",
+      "created_at": "2026-07-13T19:10:00.000Z"
+    },
+    {
+      "id": "dislexia-discalculia",
+      "title": "Dislexia y Discalculia: Abordaje desde la Neurodiversidad Universitaria",
+      "slug": "dislexia-discalculia-universidad",
+      "category": "dificultades-aprendizaje",
+      "keyword": "dificultades de aprendizaje",
+      "summary": "La dislexia y la discalculia son dificultades de aprendizaje de carácter neurobiológico que requieren adaptaciones específicas en la lectura, la escritura y el cálculo.",
+      "content": "<h3>Dislexia y Discalculia: Definición y Manifestación Universitaria</h3><p>La dislexia es un trastorno del aprendizaje de base neurobiológica que afecta la precisión y fluidez en el reconocimiento de palabras escritas, así como las habilidades de deletreo y decodificación. Por su parte, la discalculia afecta la adquisición de habilidades matemáticas básicas y el razonamiento numérico. Ambas se consideran <strong>dificultades de aprendizaje</strong> persistentes que acompañan a la persona durante su vida adulta y académica, presentándose en estudiantes universitarios con un nivel intelectual promedio o superior.</p><h3>Pautas Clave para Alumnos con Dislexia</h3><p>Para facilitar el acceso al aprendizaje a estudiantes con dislexia, el docente puede implementar las siguientes pautas:</p><ul><li><strong>Formatos legibles:</strong> Emplea tipografías limpias sin serifa (como Arial, Verdana, Calibri o tipografías especiales como OpenDyslexic) con un tamaño mínimo de 12pt y un interlineado de 1.5.</li><li><strong>Materiales digitalizados:</strong> Garantiza que toda la bibliografía esté digitalizada con reconocimiento óptico de caracteres (OCR) para permitir que los estudiantes utilicen lectores de pantalla y programas de conversión de texto a voz.</li><li><strong>Evaluación justa de la ortografía:</strong> Prioriza la evaluación del contenido, los conceptos y la estructura lógica de los argumentos por encima de las faltas de ortografía o de sintaxis menores, a menos que la ortografía sea una competencia profesional explícitamente declarada en la asignatura.</li></ul><h3>Pautas Clave para Alumnos con Discalculia</h3><p>En asignaturas cuantitativas, los estudiantes con discalculia se benefician de:</p><ul><li><strong>Uso de material de apoyo autorizado:</strong> Permitir el uso de calculadoras científicas, tablas de multiplicar, fórmulas matemáticas básicas impresas u hojas de referencia durante clases y exámenes, evaluando la comprensión lógica del proceso por encima del cálculo memorístico.</li><li><strong>Apoyos visuales y esquemas paso a paso:</strong> Proveer diagramas de flujo o guías visuales sobre los pasos necesarios para resolver algoritmos complejos o ecuaciones.</li></ul>",
+      "bibliography": "<ul><li>International Dyslexia Association (2020). <i>Dyslexia in the College Setting</i>. Fact Sheets. Recuperado de <a href='https://dyslexiaida.org' target='_blank'>https://dyslexiaida.org</a></li><li>Shalev, R. S. (2004). <i>Developmental dyscalculia</i>. Journal of Child Neurology, 19(10), 765-771.</li><li>Outhwaite, L., et al. (2022). <i>Supporting university students with specific learning difficulties (SpLDs): Best practice recommendations</i>. Higher Education Pedagogies, 7(1), 12-32.</li></ul>",
+      "status": "published",
+      "created_at": "2026-07-13T19:15:00.000Z"
+    },
+    {
+      "id": "tecnicas-estudio-neurodiversidad",
+      "title": "Métodos Activos y Técnicas de Estudio para Estudiantes Neurodiversos",
+      "slug": "tecnicas-de-estudio-neurodiversidad",
+      "category": "tecnicas-estudio",
+      "keyword": "técnicas de estudio",
+      "summary": "Aprender a estudiar de manera estructurada y multisensorial ayuda a optimizar las técnicas de estudio en alumnos con dificultades atencionales y cognitivas.",
+      "content": "<h3>La Necesidad de Técnicas de Estudio Flexibles</h3><p>Los métodos de estudio tradicionales (como la lectura pasiva repetida y el subrayado monótono) suelen resultar ineficaces para los estudiantes en general, pero son especialmente desafiantes para la población neurodiversa. Para optimizar el rendimiento de estudiantes con TDAH, dislexia o TEA, es fundamental promover <strong>técnicas de estudio</strong> basadas en el aprendizaje activo y la estimulación multisensorial, las cuales facilitan la codificación y recuperación de la información en la memoria a largo placa.</p><h3>Métodos de Estudio Activo Altamente Eficaces</h3><p>Las siguientes técnicas cuentan con fuerte respaldo empírico de la psicología cognitiva:</p><ul><li><strong>Evocación Activa (Active Recall):</strong> Consiste en ponerse a prueba a uno mismo intentando recordar la información sin mirar los apuntes. En lugar de releer el texto, el estudiante redacta preguntas sobre el contenido y luego intenta responderlas. El uso de tarjetas de memorización (Flashcards) analógicas o digitales (como Anki o Quizlet) es ideal para este fin.</li><li><strong>Práctica Espaciada (Spaced Repetition):</strong> Distribuye el estudio de un tema a lo largo del tiempo, en lugar de acumularlo todo en sesiones maratónicas la noche anterior al examen. Estudiar un tema hoy, repasarlo en 2 días, luego en 5 y después en 10 consolida la huella de memoria.</li><li><strong>Técnica de Feynman:</strong> Consiste en intentar explicar un concepto complejo con palabras sumamente sencillas, como si se lo estuviéramos enseñando a un niño de 10 años. Identificar los vacíos en la explicación permite saber con precisión qué partes del tema requieren un repaso a fondo.</li><li><strong>Mapas Mentales y Visual Thinking:</strong> Para estudiantes con dislexia o TDAH que procesan la información de manera más holística y visual, estructurar los conceptos mediante mapas visuales, códigos de colores e iconos facilita la asociación de ideas y la retención del contenido.</li></ul><h3>Estructuración del Entorno de Trabajo</h3><p>Recomienda a tus tutorados el uso de temporizadores (como la técnica Pomodoro de 25 minutos de trabajo enfocado y 5 de descanso) para mitigar la fatiga mental, y el uso de organizadores semanales visuales de tareas (tableros Kanban físicos o digitales como Trello) para estructurar su avance paso a paso.</p>",
+      "bibliography": "<ul><li>Dunlosky, J., et al. (2013). <i>Improving students' learning with effective learning techniques: Promising directions from cognitive and educational psychology</i>. Psychological Science in the Public Interest, 14(1), 4-58.</li><li>Oakley, B. (2014). <i>A Mind for Numbers: How to Excel at Math and Science (Even If You Flunked Algebra)</i>. TarcherPerigee.</li><li>Karpicke, J. D., & Blunt, J. R. (2011). <i>Retrieval practice produces more learning than elaborative studying with concept mapping</i>. Science, 331(6018), 772-775.</li></ul>",
+      "status": "published",
+      "created_at": "2026-07-13T19:20:00.000Z"
+    },
+    {
+      "id": "analisis-tematico-cualitativo",
+      "title": "Metodología Cualitativa: El Análisis Temático según Braun & Clarke",
+      "slug": "analisis-tematico-braun-clarke",
+      "category": "investigacion-cualitativa",
+      "keyword": "investigación cualitativa",
+      "summary": "El análisis temático es una de las técnicas fundamentales en investigación cualitativa. Conoce las 6 fases del modelo clásico de Braun & Clarke.",
+      "content": "<h3>¿Qué es el Análisis Temático Cualitativo?</h3><p>El análisis temático es un método sistemático para identificar, analizar y reportar patrones o 'temas' dentro de un conjunto de datos cualitativos (entrevistas, grupos focales, diarios de campo, etc.). Es uno de los enfoques metodológicos más flexibles y utilizados en la <strong>investigación cualitativa</strong> contemporánea, permitiendo organizar y describir en detalle la riqueza conceptual de los datos obtenidos.</p><h3>Las 6 Fases del Análisis Temático Reflejado por Braun & Clarke (2006)</h3><p>El modelo clásico propuesto por Virginia Braun y Victoria Clarke consta de seis fases estructuradas e iterativas:</p><ol><li><strong>Familiarización con los datos:</strong> Transcripción de entrevistas, lectura y relectura atenta de los textos, anotando las primeras ideas u observaciones generales.</li><li><strong>Generación de códigos iniciales:</strong> Codificación sistemática de características interesantes y relevantes de los datos a lo largo de todo el corpus. Los códigos representan unidades conceptuales mínimas con significado.</li><li><strong>Búsqueda de temas:</strong> Agrupar los códigos generados en la fase anterior en potenciales temas candidatos. Un tema representa una respuesta significativa a la pregunta de investigación y refleja un patrón de significado compartido.</li><li><strong>Revisión de temas:</strong> Comprobar si los temas identificados funcionan en relación con los códigos generados y con el conjunto total de los datos. Se eliminan temas redundantes y se dividen o unifican otros.</li><li><strong>Definición y denominación de temas:</strong> Realizar un análisis continuo para refinar los detalles de cada tema, definiendo el núcleo de lo que trata cada uno y asignándoles nombres claros y conceptualmente descriptivos.</li><li><strong>Producción del informe:</strong> Redacción final del artículo o reporte de investigación, seleccionando citas textuales vívidas e ilustrativas para dar soporte empírico al análisis y vinculándolo con la teoría previa.</li></ol>",
+      "bibliography": "<ul><li>Braun, V., & Clarke, V. (2006). <i>Using thematic analysis in psychology</i>. Qualitative Research in Psychology, 3(2), 77-101.</li><li>Braun, V., & Clarke, V. (2019). <i>Reflecting on reflexive thematic analysis</i>. Qualitative Research in Sport, Exercise and Health, 11(4), 589-597.</li><li>Flick, U. (2018). <i>An introduction to qualitative research</i> (6th ed.). Sage Publications.</li></ul>",
+      "status": "published",
+      "created_at": "2026-07-13T19:25:00.000Z"
+    }
+  ],
+  "links": [
+    {
+      "id": "link-cast",
+      "title": "CAST - Center for Applied Special Technology",
+      "url": "https://www.cast.org",
+      "description": "Organización pionera dedicada al desarrollo e investigación del Diseño Universal para el Aprendizaje (DUA / UDL) a nivel global.",
+      "region": "Norteamérica",
+      "type": "Teórico",
+      "created_at": "2026-07-13T19:30:00.000Z"
+    },
+    {
+      "id": "link-doit",
+      "title": "DO-IT Center - University of Washington",
+      "url": "https://www.washington.edu/doit/",
+      "description": "Centro dedicado a promover el éxito de personas con discapacidad en la educación superior y carreras profesionales mediante el uso de tecnologías de asistencia y diseño accesible.",
+      "region": "Norteamérica",
+      "type": "Práctico",
+      "created_at": "2026-07-13T19:31:00.000Z"
+    },
+    {
+      "id": "link-sapdu",
+      "title": "Red SAPDU - Crue Universidades Españolas",
+      "url": "https://sapdu.crue.org/",
+      "description": "Red de Servicios de Apoyo a las Personas con Discapacidad en las Universidades de España. Ofrece guías completas sobre adaptaciones curriculares y políticas institucionales de inclusión.",
+      "region": "Europa",
+      "type": "Práctico",
+      "created_at": "2026-07-13T19:32:00.000Z"
+    },
+    {
+      "id": "link-rid",
+      "title": "Red Interuniversitaria de Discapacidad (RID) - CIN Argentina",
+      "url": "https://www.rid.cin.edu.ar/",
+      "description": "Espacio de articulación de las universidades públicas argentinas dependiente del Consejo Interuniversitario Nacional para promover políticas y proyectos de accesibilidad y derechos humanos.",
+      "region": "Latinoamérica",
+      "type": "Investigación",
+      "created_at": "2026-07-13T19:33:00.000Z"
+    },
+    {
+      "id": "link-unesco-inclusive",
+      "title": "UNESCO - Educación Inclusiva",
+      "url": "https://www.unesco.org/en/education/inclusive-education",
+      "description": "Portal oficial de las Naciones Unidas con marcos conceptuales globales, informes mundiales sobre discapacidad y lineamientos de políticas públicas educativas inclusivas.",
+      "region": "Global",
+      "type": "Teórico",
+      "created_at": "2026-07-13T19:34:00.000Z"
+    },
+    {
+      "id": "link-who-disability",
+      "title": "Organización Mundial de la Salud (OMS) - Discapacidad",
+      "url": "https://www.who.int/health-topics/disability",
+      "description": "Estudios epidemiológicos, estadísticas mundiales e informes técnicos detallados sobre la salud y la participación social de las personas con discapacidad a escala global.",
+      "region": "Global",
+      "type": "Investigación",
+      "created_at": "2026-07-13T19:35:00.000Z"
+    },
+    {
+      "id": "link-once-educacion",
+      "title": "ONCE - Servicios Educativos",
+      "url": "https://www.once.es/",
+      "description": "Recursos de apoyo especializado, adaptaciones tiflológicas y asesoramiento pedagógico para la inclusión escolar y universitaria de personas ciegas o con baja visión.",
+      "region": "Europa",
+      "type": "Práctico",
+      "created_at": "2026-07-13T19:36:00.000Z"
+    },
+    {
+      "id": "link-ahead",
+      "title": "AHEAD - Association on Higher Education and Disability",
+      "url": "https://www.ahead.org/",
+      "description": "Asociación internacional líder enfocada en el desarrollo profesional de gestores universitarios de accesibilidad, ofreciendo investigación avanzada, webinars y guías institucionales.",
+      "region": "Norteamérica",
+      "type": "Investigación",
+      "created_at": "2026-07-13T19:37:00.000Z"
+    },
+    {
+      "id": "link-european-agency",
+      "title": "European Agency for Special Needs and Inclusive Education",
+      "url": "https://www.european-agency.org/",
+      "description": "Organización europea que reúne a ministerios de educación para realizar investigaciones cualitativas y cuantitativas sobre políticas de educación inclusiva escolar y superior.",
+      "region": "Europa",
+      "type": "Investigación",
+      "created_at": "2026-07-13T19:38:00.000Z"
+    },
+    {
+      "id": "link-demre-inclusion",
+      "title": "DEMRE - Área de Inclusión (Universidad de Chile)",
+      "url": "https://demre.cl/inclusion/",
+      "description": "Espacio con pautas, ajustes aplicados e informes técnicos para la rendición accesible de las pruebas de acceso universitario (PAES) en Chile.",
+      "region": "Latinoamérica",
+      "type": "Práctico",
+      "created_at": "2026-07-13T19:39:00.000Z"
+    },
+    {
+      "id": "link-uba-discapacidad",
+      "title": "Comisión de Discapacidad de la Universidad de Buenos Aires (UBA)",
+      "url": "http://www.uba.ar/contenido/335",
+      "description": "Resoluciones, proyectos de investigación pedagógica y guías de buenas prácticas universitarias en atención al estudiante con discapacidad física y neurodiversidad en la UBA.",
+      "region": "Latinoamérica",
+      "type": "Práctico",
+      "created_at": "2026-07-13T19:40:00.000Z"
+    }
+  ]
+};

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EducaInclusión | Biblioteca de Recursos Pedagógicos Universitarios</title>
+    <meta name="description" content="Portal educativo de recursos, guías prácticas y enlaces de inclusión para docentes y orientadores universitarios.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header dinámico inyectado por app.js -->
+    <div id="nav-placeholder"></div>
+
+    <!-- Hero Banner con buscador integrado -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>Recursos Educativos para la Inclusión Universitaria</h1>
+            <p>Guías académicas de alta calidad, metodologías de estudio y un directorio global de portales de inclusión para docentes y orientadores.</p>
+            
+            <div class="search-box">
+                <input type="text" id="global-search-input" placeholder="Buscar guías, TDAH, dislexia, Braun & Clarke, enlaces...">
+                <button id="global-search-btn">Buscar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="container" style="padding-bottom: 5rem;">
+        
+        <!-- Categorías Principales (Tarjetas rápidas) -->
+        <section class="category-cards" aria-label="Categorías de recursos">
+            <article class="category-card">
+                <span class="category-card-icon">🤝</span>
+                <h3>Inclusión Educativa</h3>
+                <p>Diseño Universal para el Aprendizaje (DUA), adaptaciones de acceso curricular y casos prácticos.</p>
+                <a href="inclusion-educativa.html" class="btn-link">Explorar temas &rarr;</a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-card-icon">🧠</span>
+                <h3>Dificultades de Aprendizaje</h3>
+                <p>Pautas de acompañamiento para TDAH, dislexia, discalculia, TEA y herramientas evaluativas.</p>
+                <a href="dificultades-aprendizaje.html" class="btn-link">Explorar temas &rarr;</a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-card-icon">📝</span>
+                <h3>Técnicas de Estudio</h3>
+                <p>Métodos de evocación activa, repetición espaciada y recursos interactivos de tutoría.</p>
+                <a href="orientacion-tecnicas-estudio.html" class="btn-link">Explorar técnicas &rarr;</a>
+            </article>
+
+            <article class="category-card">
+                <span class="category-card-icon">🔬</span>
+                <h3>Investigación Cualitativa</h3>
+                <p>Análisis temático según Braun & Clarke, guías de codificación y plantillas para ATLAS.ti.</p>
+                <a href="investigacion-cualitativa.html" class="btn-link">Ver metodologías &rarr;</a>
+            </article>
+        </section>
+
+        <!-- Resultados de Búsqueda Dinámicos (Ocultos por defecto) -->
+        <section id="search-results-section" style="display: none; margin-top: 4rem;">
+            <div class="directory-header">
+                <h2>Resultados de Búsqueda</h2>
+                <div style="width: 50px; height: 3px; background: var(--secondary); margin: 0.5rem auto 1.5rem;"></div>
+                <button class="btn-secondary" id="clear-search-btn" style="padding: 0.4rem 1rem; font-size: 0.9rem;">Volver al inicio</button>
+            </div>
+            
+            <div id="search-results-grid" class="directory-grid">
+                <!-- Se cargan por JS -->
+            </div>
+        </section>
+
+        <!-- Espacio para Anuncios / AdSense -->
+        <div class="ad-placeholder"></div>
+
+        <!-- Artículos Destacados y Novedades -->
+        <section id="featured-articles" style="margin-top: 5rem;">
+            <div class="directory-header">
+                <h2>Artículos y Novedades Destacadas</h2>
+                <p>Las últimas publicaciones y guías académicas con bibliografía detallada.</p>
+                <div style="width: 60px; height: 4px; background: var(--accent); margin: 1rem auto 0; border-radius: 2px;"></div>
+            </div>
+
+            <div class="directory-grid" id="featured-grid" style="margin-top: 2.5rem;">
+                <!-- Rellenado por JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer dinámico inyectado por app.js -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const db = getDatabase();
+            const featuredGrid = document.getElementById('featured-grid');
+            
+            // 1. Mostrar artículos destacados (Publicados y limitados a 3)
+            const publishedArticles = db.articles.filter(a => a.status === 'published');
+            const featured = publishedArticles.slice(-3).reverse(); // Los últimos 3
+
+            featuredGrid.innerHTML = featured.map(art => {
+                let sectionUrl = '';
+                if(art.category === 'inclusion-educativa') sectionUrl = 'inclusion-educativa.html';
+                else if(art.category === 'dificultades-aprendizaje') sectionUrl = 'dificultades-aprendizaje.html';
+                else if(art.category === 'tecnicas-estudio') sectionUrl = 'orientacion-tecnicas-estudio.html';
+                else if(art.category === 'investigacion-cualitativa') sectionUrl = 'investigacion-cualitativa.html';
+
+                return `
+                <article class="directory-card">
+                    <div class="directory-card-tags">
+                        <span class="badge tag-region">${art.keyword}</span>
+                    </div>
+                    <h4>${art.title}</h4>
+                    <p>${art.summary}</p>
+                    <a href="${sectionUrl}?slug=${art.slug}" class="btn-visit" style="margin-top: auto;">Leer Artículo Completo</a>
+                </article>
+                `;
+            }).join('');
+
+            // 2. Buscador Global
+            const searchInput = document.getElementById('global-search-input');
+            const searchBtn = document.getElementById('global-search-btn');
+            const searchSection = document.getElementById('search-results-section');
+            const searchResultsGrid = document.getElementById('search-results-grid');
+            const featuredSection = document.getElementById('featured-articles');
+            const cardsSection = document.querySelector('.category-cards');
+            const clearSearchBtn = document.getElementById('clear-search-btn');
+
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                if (!query) return;
+
+                // Buscar en artículos
+                const matchingArticles = db.articles.filter(art => 
+                    art.status === 'published' && (
+                        art.title.toLowerCase().includes(query) ||
+                        art.summary.toLowerCase().includes(query) ||
+                        art.content.toLowerCase().includes(query) ||
+                        art.keyword.toLowerCase().includes(query)
+                    )
+                );
+
+                // Buscar en enlaces
+                const matchingLinks = db.links.filter(link => 
+                    link.title.toLowerCase().includes(query) ||
+                    link.description.toLowerCase().includes(query) ||
+                    link.url.toLowerCase().includes(query) ||
+                    link.region.toLowerCase().includes(query) ||
+                    link.type.toLowerCase().includes(query)
+                );
+
+                searchResultsGrid.innerHTML = '';
+                
+                if (matchingArticles.length === 0 && matchingLinks.length === 0) {
+                    searchResultsGrid.innerHTML = `
+                        <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; color: var(--text-muted);">
+                            <p style="font-size: 1.2rem; font-weight: 500;">No se encontraron resultados para "${searchInput.value}"</p>
+                            <p style="margin-top: 0.5rem;">Intenta con palabras clave como DUA, dislexia, TDAH o el nombre de alguna universidad.</p>
+                        </div>
+                    `;
+                } else {
+                    // Mostrar artículos coincidentes
+                    matchingArticles.forEach(art => {
+                        let sectionUrl = '';
+                        if(art.category === 'inclusion-educativa') sectionUrl = 'inclusion-educativa.html';
+                        else if(art.category === 'dificultades-aprendizaje') sectionUrl = 'dificultades-aprendizaje.html';
+                        else if(art.category === 'tecnicas-estudio') sectionUrl = 'orientacion-tecnicas-estudio.html';
+                        else if(art.category === 'investigacion-cualitativa') sectionUrl = 'investigacion-cualitativa.html';
+
+                        searchResultsGrid.innerHTML += `
+                        <article class="directory-card" style="border-left: 4px solid var(--accent);">
+                            <div class="directory-card-tags">
+                                <span class="badge tag-region">${art.keyword}</span>
+                                <span class="badge tag-type">Artículo</span>
+                            </div>
+                            <h4>${art.title}</h4>
+                            <p>${art.summary}</p>
+                            <a href="${sectionUrl}?slug=${art.slug}" class="btn-visit" style="margin-top: auto;">Leer Artículo</a>
+                        </article>
+                        `;
+                    });
+
+                    // Mostrar enlaces coincidentes
+                    matchingLinks.forEach(link => {
+                        searchResultsGrid.innerHTML += `
+                        <article class="directory-card" style="border-left: 4px solid var(--secondary);">
+                            <div class="directory-card-tags">
+                                <span class="badge tag-region">${link.region}</span>
+                                <span class="badge tag-type">${link.type}</span>
+                            </div>
+                            <h4>${link.title}</h4>
+                            <p>${link.description}</p>
+                            <a href="${link.url}" target="_blank" class="btn-visit" style="margin-top: auto;">Visitar Recurso Externo ↗</a>
+                        </article>
+                        `;
+                    });
+                }
+
+                // Alternar visualización de secciones
+                cardsSection.style.display = 'none';
+                featuredSection.style.display = 'none';
+                searchSection.style.display = 'block';
+                searchSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') performSearch();
+            });
+
+            clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchSection.style.display = 'none';
+                cardsSection.style.display = 'grid';
+                featuredSection.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

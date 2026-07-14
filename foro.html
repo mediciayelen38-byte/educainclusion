@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foro de Experiencias Docentes | EducaInclusión</title>
+    <meta name="description" content="Foro comunitario para que docentes universitarios y orientadores compartan sus experiencias y adaptaciones en el aula.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+
+    <!-- Header inyectado dinámicamente -->
+    <div id="nav-placeholder"></div>
+
+    <main class="main-wrapper">
+        <div class="container split-layout">
+            
+            <!-- Columna Izquierda: Formulario para compartir -->
+            <section class="sidebar-nav" style="position: sticky; top: 100px; height: fit-content; background: white; padding: 2rem; border-radius: var(--border-radius); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+                <h3 style="padding: 0; margin-bottom: 0.5rem; color: var(--primary);">Comparte tu Experiencia</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Tu vivencia puede ayudar a otros docentes a resolver situaciones similares en sus aulas.</p>
+                
+                <form id="foro-form">
+                    <div class="form-group">
+                        <label for="foro-nombre">Nombre Completo</label>
+                        <input type="text" id="foro-nombre" required placeholder="Ej. Prof. Javier Ruiz">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="foro-rol">Tu Cátedra / Rol</label>
+                        <input type="text" id="foro-rol" required placeholder="Ej. Docente de Química / Tutor">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foro-tema">Tema Relacionado</label>
+                        <select id="foro-tema" required>
+                            <option value="DUA">Diseño Universal (DUA)</option>
+                            <option value="Dificultades">Dificultades de Aprendizaje</option>
+                            <option value="Técnicas">Técnicas de Estudio</option>
+                            <option value="Otro">Otro Tema de Inclusión</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="foro-mensaje">Tu Experiencia</label>
+                        <textarea id="foro-mensaje" rows="4" required placeholder="¿Qué adaptaciones realizaste y cómo respondieron los alumnos?..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Publicar en el Foro</button>
+                </form>
+            </section>
+
+            <!-- Columna Derecha: Listado de Comentarios/Foro -->
+            <section class="article-container" aria-label="Comentarios del foro">
+                <header class="article-header" style="margin-bottom: 1.5rem; border-bottom: none; padding-bottom: 0;">
+                    <h2>Foro de la Comunidad Docente</h2>
+                    <p style="color: var(--text-muted);">Lee las estrategias reales aplicadas por otros profesionales alrededor del mundo.</p>
+                </header>
+
+                <!-- Filtro de Comentarios -->
+                <div class="filter-group" style="margin-bottom: 2rem; background: var(--bg-light); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <span class="filter-label" style="min-width: auto; font-size: 0.9rem;">Filtrar temas:</span>
+                    <div class="filter-pills" id="foro-filter-pills">
+                        <button class="filter-pill active" data-filter="all">Todos</button>
+                        <button class="filter-pill" data-filter="DUA">DUA</button>
+                        <button class="filter-pill" data-filter="Dificultades">Dificultades</button>
+                        <button class="filter-pill" data-filter="Técnicas">Técnicas de Estudio</button>
+                        <button class="filter-pill" data-filter="Otro">Otros</button>
+                    </div>
+                </div>
+
+                <!-- Lista de Experiencias -->
+                <div class="comment-list" id="foro-comments-container">
+                    <!-- Inyectado por JS -->
+                </div>
+                
+                <!-- Placeholder de Google AdSense -->
+                <div class="ad-placeholder"></div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer inyectado dinámicamente -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const commentsContainer = document.getElementById('foro-comments-container');
+            const form = document.getElementById('foro-form');
+            const filterPills = document.getElementById('foro-filter-pills').querySelectorAll('.filter-pill');
+            
+            let activeFilter = 'all';
+
+            // Función para renderizar comentarios
+            function renderComments() {
+                const comments = getForoComments();
+                
+                const filtered = comments.filter(c => {
+                    return activeFilter === 'all' || c.tema === activeFilter;
+                });
+
+                if (filtered.length === 0) {
+                    commentsContainer.innerHTML = `
+                        <div style="text-align: center; padding: 3rem; color: var(--text-muted); background: var(--bg-light); border-radius: 8px;">
+                            <p style="font-size: 1.1rem; font-weight: 500;">No hay publicaciones sobre este tema todavía.</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.25rem;">¡Sé el primero en compartir tu experiencia utilizando el formulario!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Mostrar de más recientes a más antiguos
+                commentsContainer.innerHTML = filtered.slice().reverse().map(c => {
+                    // Obtener iniciales para avatar
+                    const initials = c.nombre.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                    const dateStr = new Date(c.fecha).toLocaleDateString('es-ES', {
+                        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+                    });
+
+                    return `
+                    <article class="comment-card">
+                        <div class="comment-avatar">${initials}</div>
+                        <div class="comment-body">
+                            <div class="comment-meta">
+                                <div>
+                                    <span class="comment-author">${c.nombre}</span>
+                                    <span class="comment-role">(${c.rol})</span>
+                                </div>
+                                <span class="comment-date">${dateStr}</span>
+                            </div>
+                            <div style="margin-bottom: 0.5rem;">
+                                <span class="badge" style="background-color: var(--primary); color: white; font-size: 0.7rem; padding: 0.1rem 0.5rem;">${c.tema}</span>
+                            </div>
+                            <p class="comment-text">${c.mensaje}</p>
+                        </div>
+                    </article>
+                    `;
+                }).join('');
+            }
+
+            // Manejo de filtros
+            filterPills.forEach(pill => {
+                pill.addEventListener('click', () => {
+                    filterPills.forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    activeFilter = pill.getAttribute('data-filter');
+                    renderComments();
+                });
+            });
+
+            // Envío de Formulario
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const newComment = {
+                    id: "c-" + Date.now(),
+                    nombre: document.getElementById('foro-nombre').value,
+                    rol: document.getElementById('foro-rol').value,
+                    tema: document.getElementById('foro-tema').value,
+                    mensaje: document.getElementById('foro-mensaje').value,
+                    fecha: new Date().toISOString()
+                };
+
+                const comments = getForoComments();
+                comments.push(newComment);
+                saveForoComments(comments);
+                
+                form.reset();
+                renderComments();
+            });
+
+            // Cargar comentarios inicialmente
+            renderComments();
+        });
+    </script>
+</body>
+</html>
