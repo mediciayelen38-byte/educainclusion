@@ -7,6 +7,32 @@
     <meta name="description" content="Investigación en educación inclusiva, didáctica general y didácticas específicas orientadas al aula universitaria.">
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+    <style>
+        .sidebar-subcat-group {
+            margin-bottom: 1.75rem;
+        }
+        .sidebar-subcat-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding-left: 0.5rem;
+        }
+        .sidebar-nav ul {
+            padding-left: 0.5rem;
+        }
+        .sidebar-nav li {
+            margin-bottom: 0.25rem;
+        }
+        .sidebar-nav a {
+            padding: 0.5rem 0.75rem !important;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
 <body>
 
@@ -16,12 +42,12 @@
     <main class="main-wrapper">
         <div class="container split-layout">
             
-            <!-- Sidebar Izquierdo con los artículos de la categoría -->
-            <aside class="sidebar-nav">
+            <!-- Sidebar Izquierdo con los artículos agrupados por subcategoría -->
+            <aside class="sidebar-nav" style="position: sticky; top: 100px; height: fit-content;">
                 <h3>Investigación y Didáctica</h3>
-                <ul id="sidebar-articles-list">
+                <div id="sidebar-articles-list">
                     <!-- Inyectado por JS -->
-                </ul>
+                </div>
             </aside>
 
             <!-- Sección Derecha: Detalle del Artículo -->
@@ -79,13 +105,33 @@
                 return;
             }
 
-            // Renderizar Sidebar
+            // Renderizar Sidebar agrupado por subcategorías
             function renderSidebar(activeSlug) {
-                listElement.innerHTML = articles.map(art => `
-                    <li class="${art.slug === activeSlug ? 'active' : ''}">
-                        <a href="?slug=${art.slug}" data-slug="${art.slug}">${art.title}</a>
-                    </li>
-                `).join('');
+                const subcategories = {
+                    'nivel-superior': 'Nivel Superior',
+                    'docentes': 'Docentes',
+                    'alumnos': 'Alumnos',
+                    'ensenanza-aprendizaje': 'Enseñanza y Aprendizaje'
+                };
+
+                let html = '';
+                for (const [key, label] of Object.entries(subcategories)) {
+                    const subArticles = articles.filter(a => a.subcategory === key);
+                    if (subArticles.length > 0) {
+                        html += `
+                        <div class="sidebar-subcat-group">
+                            <h4 class="sidebar-subcat-title">${label}</h4>
+                            <ul>
+                                ${subArticles.map(art => `
+                                    <li class="${art.slug === activeSlug ? 'active' : ''}">
+                                        <a href="?slug=${art.slug}" data-slug="${art.slug}">${art.title}</a>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>`;
+                    }
+                }
+                listElement.innerHTML = html;
 
                 // Interceptar clics para transiciones suaves sin recargar
                 listElement.querySelectorAll('a').forEach(link => {
