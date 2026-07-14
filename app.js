@@ -74,7 +74,7 @@ function injectHeaderAndFooter() {
                     <li><a href="inclusion-educativa.html" class="${filename === 'inclusion-educativa.html' ? 'active' : ''}">Inclusión</a></li>
                     <li><a href="dificultades-aprendizaje.html" class="${filename === 'dificultades-aprendizaje.html' ? 'active' : ''}">Dificultades</a></li>
                     <li><a href="orientacion-tecnicas-estudio.html" class="${filename === 'orientacion-tecnicas-estudio.html' ? 'active' : ''}">Técnicas</a></li>
-                    <li><a href="investigacion-cualitativa.html" class="${filename === 'investigacion-cualitativa.html' ? 'active' : ''}">Investigación</a></li>
+                    <li><a href="investigacion-educacion-inclusiva.html" class="${filename === 'investigacion-educacion-inclusiva.html' ? 'active' : ''}">Investigación</a></li>
                     <li><a href="directorio-global.html" class="${filename === 'directorio-global.html' ? 'active' : ''}">Directorio</a></li>
                     <li><a href="foro.html" class="${filename === 'foro.html' ? 'active' : ''}">Foro</a></li>
                     <li><a href="recursos-descargables.html" class="${filename === 'recursos-descargables.html' ? 'active' : ''}">Descargas</a></li>
@@ -150,7 +150,7 @@ function injectHeaderAndFooter() {
                         <li><a href="inclusion-educativa.html">Inclusión Educativa</a></li>
                         <li><a href="dificultades-aprendizaje.html">Dificultades de Aprendizaje</a></li>
                         <li><a href="orientacion-tecnicas-estudio.html">Técnicas de Estudio</a></li>
-                        <li><a href="investigacion-cualitativa.html">Investigación Cualitativa</a></li>
+                        <li><a href="investigacion-educacion-inclusiva.html">Investigación y Didáctica</a></li>
                     </ul>
                 </div>
                 <div>

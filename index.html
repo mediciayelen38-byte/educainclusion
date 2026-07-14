@@ -54,9 +54,9 @@
 
             <article class="category-card">
                 <span class="category-card-icon">🔬</span>
-                <h3>Investigación Cualitativa</h3>
-                <p>Análisis temático según Braun & Clarke, guías de codificación y plantillas para ATLAS.ti.</p>
-                <a href="investigacion-cualitativa.html" class="btn-link">Ver metodologías &rarr;</a>
+                <h3>Investigación y Didáctica</h3>
+                <p>Investigación en educación inclusiva, didáctica general y didácticas específicas.</p>
+                <a class='btn-link' href='investigacion-educacion-inclusiva.html'>Ver temas &rarr;</a>
             </article>
         </section>
 
@@ -110,7 +110,7 @@
                 if(art.category === 'inclusion-educativa') sectionUrl = 'inclusion-educativa.html';
                 else if(art.category === 'dificultades-aprendizaje') sectionUrl = 'dificultades-aprendizaje.html';
                 else if(art.category === 'tecnicas-estudio') sectionUrl = 'orientacion-tecnicas-estudio.html';
-                else if(art.category === 'investigacion-cualitativa') sectionUrl = 'investigacion-cualitativa.html';
+                else if(art.category === 'investigacion-inclusiva') sectionUrl = 'investigacion-educacion-inclusiva.html';
 
                 return `
                 <article class="directory-card">
@@ -172,7 +172,7 @@
                         if(art.category === 'inclusion-educativa') sectionUrl = 'inclusion-educativa.html';
                         else if(art.category === 'dificultades-aprendizaje') sectionUrl = 'dificultades-aprendizaje.html';
                         else if(art.category === 'tecnicas-estudio') sectionUrl = 'orientacion-tecnicas-estudio.html';
-                        else if(art.category === 'investigacion-cualitativa') sectionUrl = 'investigacion-cualitativa.html';
+                        else if(art.category === 'investigacion-inclusiva') sectionUrl = 'investigacion-educacion-inclusiva.html';
 
                         searchResultsGrid.innerHTML += `
                         <article class="directory-card" style="border-left: 4px solid var(--accent);">
